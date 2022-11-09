@@ -1,1 +1,4 @@
 /build
+/Laborator4/build
+*.vscode
+*.exe
