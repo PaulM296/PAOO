@@ -95,6 +95,10 @@ class TriunghiOarecare: public Triunghi {
             cout<<"Triunghiul oarecare a fost distrus\n";
         }
         TriunghiOarecare& operator = (const TriunghiOarecare& rhs){
+            if(this == &rhs) {
+                cout<<"Este acelasi obiect\n";
+                return *this;
+            }
             Triunghi::operator=(rhs);
             unghiTriunghi = rhs.unghiTriunghi;
             return *this;
