@@ -28,24 +28,24 @@ class Triunghi: private Uncopyable {
         lat3(lat3)
         {}
 
-        // Triunghi(const Triunghi &triunghi):
-        // tipTriunghi(triunghi.tipTriunghi),
-        // lat1(triunghi.lat1),
-        // lat2(triunghi.lat2),
-        // lat3(triunghi.lat3)
-        // {}
+        Triunghi(const Triunghi &triunghi):
+        tipTriunghi(triunghi.tipTriunghi),
+        lat1(triunghi.lat1),
+        lat2(triunghi.lat2),
+        lat3(triunghi.lat3)
+        {}
 
         ~Triunghi() {
             cout<<"Object has been destroyed!\n";
         }
 
-        // Triunghi& operator = (const Triunghi& rhs) {
-        //     this->tipTriunghi = rhs.tipTriunghi;
-        //     this->lat1 = rhs.lat1;
-        //     this->lat2 = rhs.lat2;
-        //     this->lat3 = rhs.lat3;
-        //     return *this;
-        // }
+        Triunghi& operator = (const Triunghi& rhs) {
+            this->tipTriunghi = rhs.tipTriunghi;
+            this->lat1 = rhs.lat1;
+            this->lat2 = rhs.lat2;
+            this->lat3 = rhs.lat3;
+            return *this;
+        }
 
         string getTip(){
             return tipTriunghi;
