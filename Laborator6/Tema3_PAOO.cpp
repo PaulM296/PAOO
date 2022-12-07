@@ -12,6 +12,15 @@ using namespace std;
 //     Uncopyable& operator = (const Uncopyable&);
 // };
 
+class Uncopyable {
+protected:                              // allow construction
+    Uncopyable() {}                     // and destruction of
+    ~Uncopyable() {}                    // derived objects...
+private:
+    Uncopyable(const Uncopyable&);      // ...but prevent copying
+    Uncopyable& operator = (const Uncopyable&);
+};
+
 class Triunghi {
     private: 
         string tipTriunghi;
@@ -89,6 +98,13 @@ class Triunghi {
             this->triangleLocked = triangleLocked;
         }
 
+        void setLatura1(const int lat1){
+            this->lat1 = lat1;
+        }
+        void setTipTriunghi(const string tipTriunghi) {
+            this->tipTriunghi = tipTriunghi;
+        }
+
         int perimetru() {
             return lat1 + lat2 + lat3;
         }
@@ -141,7 +157,7 @@ void unlock(Triunghi& triunghi) {
     cout<<"Deblocam triunghiul\n";
 };
 
-class Lock {
+class Lock : private Uncopyable {
     private:
         Triunghi& triunghiPtr;
     public:
@@ -182,9 +198,18 @@ int main() {
 
     //item 14
     Triunghi triunghi5("echilateral", 10, 10, 10, false);
-    Lock* triunghi6 = new Lock(triunghi5);
-    cout<<triunghi5.getTriangleLocked()<<'\n';
-    delete triunghi6;
-    cout<<triunghi5.getTriangleLocked()<<'\n';
+    cout<<'\n'<<triunghi5.getTip()<<' '<<triunghi5.getLatura1()<<' '<<triunghi5.getLatura2()<<' '<<triunghi5.getLatura3()<<" Locked value: "<<triunghi5.getTriangleLocked()<<'\n';
+    {
+        Lock Triunghi6(triunghi5);     
+        // Lock Triunghi7(Triunghi6);
+        triunghi5.setLatura1(15);
+        triunghi5.setTipTriunghi("isoscel");
+    }
+    cout<<'\n'<<triunghi5.getTip()<<' '<<triunghi5.getLatura1()<<' '<<triunghi5.getLatura2()<<' '<<triunghi5.getLatura3()<<" Locked value: "<<triunghi5.getTriangleLocked()<<'\n';
+
+
+    // cout<<triunghi5.getTriangleLocked()<<'\n';
+    // delete triunghi6;
+    // cout<<triunghi5.getTriangleLocked()<<'\n';
     return 0;
 }
